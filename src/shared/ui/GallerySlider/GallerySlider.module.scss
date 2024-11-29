@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  padding-right: 50px;
+}
+
+.slide {
+  max-width: 320px;
+  font: var(--font-m);
+}
+
+.title {
+  margin-bottom: 15px;
+  font: var(--font-l);
+  color: var(--color-blue);
+}

@@ -1,5 +1,7 @@
-import { Numbers } from "../app/Numbers/Numbers";
-import styles from "./MainPage.module.scss";
+import { Numbers } from 'app/Numbers/Numbers';
+import { GallerySlider } from 'shared/ui/GallerySlider/GallerySlider';
+
+import styles from './MainPage.module.scss';
 
 
 export const MainPage = () => {
@@ -8,6 +10,7 @@ export const MainPage = () => {
     <div className={styles.page}>
       <h1 className={styles.title}>Исторические даты</h1>
       <Numbers />
+      <GallerySlider />
     </div>
   );
 };

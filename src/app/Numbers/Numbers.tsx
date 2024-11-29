@@ -1,4 +1,4 @@
-import styles from "./Numbers.module.scss";
+import styles from './Numbers.module.scss';
 
 
 export const Numbers = () => {

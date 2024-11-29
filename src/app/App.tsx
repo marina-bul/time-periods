@@ -1,6 +1,6 @@
-import { MainPage } from "pages/MainPage";
-import { Numbers } from "./Numbers/Numbers";
-import "./styles/index.scss";
+import { MainPage } from 'pages/MainPage';
+
+import './styles/index.scss';
 
 
 export const App = () => {
