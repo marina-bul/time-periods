@@ -1,12 +1,12 @@
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { CustomNextButton, CustomPrevButton } from './elems/CustomButtons/CustomButtons';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import styles from './GallerySlider.module.scss'
-import { CustomNextButton, CustomPrevButton } from './elems/CustomButtons/CustomButtons';
 
 
 export const GallerySlider = () => {
