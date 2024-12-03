@@ -39,6 +39,7 @@ export default [
             "external",
             "internal",
             ["parent", "sibling", "index"],
+            "type",
           ],
           pathGroupsExcludedImportTypes: ["builtin"],
           "newlines-between": "always",

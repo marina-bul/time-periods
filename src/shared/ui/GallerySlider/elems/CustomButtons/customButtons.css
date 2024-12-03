@@ -5,6 +5,7 @@
   align-items: center;
   width: 40px;
   height: 40px;
+  color: var(--color-blue);
   background-color: var(--color-white);
   border: none;
   border-radius: 50%;

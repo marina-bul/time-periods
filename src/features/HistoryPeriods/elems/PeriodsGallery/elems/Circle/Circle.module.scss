@@ -1,5 +1,7 @@
 .circleContainer {
   display: block;
+  transform-origin: center;
+  transform-box: fill-box;
 }
 
 .point {
@@ -21,7 +23,8 @@
 .border {
  cursor: pointer; 
 
- &:hover+.point {
+ &:hover+.point,
+ &.active+.point {
   stroke: rgba(66, 86, 122, 0.2);
   stroke-width: 0.2;
   fill: none;
