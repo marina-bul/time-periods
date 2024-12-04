@@ -8,15 +8,19 @@
   transform-box: fill-box;
   transform-origin: center;
   transition: transform 0.3s, fill 0.3s;
+  fill: var(--color-black)
 }
 
-.pointText {
+.pointText,
+.fieldText {
   display: none;
   font-size: 20px;
   fill: var(--color-black); 
-  transform-origin: center;
-  transform-box: fill-box;
   pointer-events: none;
+}
+
+.fieldText.visible {
+  display: inline;
 }
 
 
@@ -27,7 +31,7 @@
  &.active+.point {
   stroke: rgba(66, 86, 122, 0.2);
   stroke-width: 0.2;
-  fill: none;
+  fill: var(--color-white);
   transform: scale(6);
 
   &+.pointText {

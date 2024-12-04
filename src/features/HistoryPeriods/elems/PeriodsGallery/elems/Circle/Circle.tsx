@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import cn from 'clsx';
+import { CircleSlider } from 'shared/services/CircleSlider/CircleSlider';
 
 import styles from './Circle.module.scss'
 
 import type { FC } from 'react';
+import type { Point } from 'shared/types/Circle';
 
 interface CircleProps {
   className?: string;
@@ -18,55 +20,23 @@ export const CircleWithPoints: FC<CircleProps> = ({
   activePoint, 
   onChangeActivePoint 
 }) => {
+
   const [rotation, setRotation] = useState(0);
-  const generatePoints = (numPoints: number) => {
-    const radius = 265;
-    const centerX = 265;
-    const centerY = 265;
-    const points = [];
 
-    for (let i = 0; i < numPoints; i++) {
-      const angle = ((i * 2 * Math.PI) / numPoints) - (Math.PI / 3);
-      points.push({
-        cx: centerX - radius * Math.cos(angle),
-        cy: centerY + radius * Math.sin(angle), 
-        index: i+1
-      });
-    }
+  const circleSlider = new CircleSlider(265, 265, 265, numberOfPoints)
 
-    return points;
-  };
-
-  const points = generatePoints(numberOfPoints);
-  
-  const initialActivePoint = points[points.length-1]
-  const activePointCoords = { cx: initialActivePoint.cx, cy: initialActivePoint.cy }
+  const points = circleSlider.getPoints();
 
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleRotate = useCallback((point: any) => {
-    const toDegrees = (radians: number) => radians * (180 / Math.PI);
-
-    const currentAngle = Math.atan2(
-      point.cy - 265,
-      point.cx - 265
-    );
-
-    const targetAngle = Math.atan2(
-      activePointCoords.cy - 265,
-      activePointCoords.cx - 265
-    );
-
-    const rotationAngle = toDegrees(targetAngle - currentAngle);
-
-    setRotation(rotationAngle);
+  const handleRotate = useCallback((point: Point) => {
+    setRotation(circleSlider.calculateRotation(point));
     onChangeActivePoint(point.index)
-  }, [activePointCoords, onChangeActivePoint]);
+  }, [circleSlider.calculateRotation, onChangeActivePoint]);
 
   useEffect(() => {
     const newActivePoint = points.find(point => point.index === activePoint.idx)
     handleRotate(newActivePoint)
-  }, [activePoint, initialActivePoint, handleRotate])
+  }, [activePoint, handleRotate])
 
   return (
     <svg
@@ -88,30 +58,38 @@ export const CircleWithPoints: FC<CircleProps> = ({
           <g key={point.index}>
             <circle
               className={cn(styles.border, { [styles.active]: point.index === activePoint.idx })}
-              cx={point.cx}
-              cy={point.cy}
+              cx={point.coords.cx}
+              cy={point.coords.cy}
               r="12"
               fill="transparent"
               onClick={() => handleRotate(point)}
             />
+
             <circle 
               className={styles.point}
-              cx={point.cx}
-              cy={point.cy}
+              cx={point.coords.cx}
+              cy={point.coords.cy}
               r="3"
-              fill="#000000"
             />
             <text
-              x={point.cx}
-              y={point.cy}
+              x={point.coords.cx}
+              y={point.coords.cy}
               className={styles.pointText}
               textAnchor="middle"
               dominantBaseline="middle"
-              style={{ 
-                transform: `rotate(${-rotation}deg)`,
-              }}
+              transform={`rotate(${-rotation}, ${point.coords.cx}, ${point.coords.cy})`} 
             >
               {point.index}
+            </text>
+            <text
+              x={point.coords.cx + 70}
+              y={point.coords.cy}
+              className={cn(styles.fieldText, { [styles.visible]: point.index === activePoint.idx })}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              transform={`rotate(${-rotation}, ${point.coords.cx}, ${point.coords.cy})`} 
+            >
+              {activePoint.field}
             </text>
           </g>
                 
