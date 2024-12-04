@@ -1,4 +1,4 @@
-import { HistoryPeriods } from 'features/HistoryPeriods/HistoryPeriods';
+import { HistoryPeriods } from 'features/HistoryPeriods';
 
 import styles from './MainPage.module.scss';
 

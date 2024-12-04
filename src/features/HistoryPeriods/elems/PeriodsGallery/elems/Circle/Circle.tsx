@@ -1,9 +1,18 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import cn from 'clsx';
 
 import styles from './Circle.module.scss'
 
-export const CircleWithPoints = () => {
+import type { FC } from 'react';
+
+interface CircleProps {
+  className?: string;
+  numberOfPoints: number;
+  activePoint: {idx: number; field: string}
+  onChangeActivePoint: (pointIndex: number) => void
+}
+
+export const CircleWithPoints: FC<CircleProps> = ({ numberOfPoints, activePoint, onChangeActivePoint }) => {
   const [rotation, setRotation] = useState(0);
   const generatePoints = (numPoints: number) => {
     const radius = 265;
@@ -23,16 +32,14 @@ export const CircleWithPoints = () => {
     return points;
   };
 
-  const points = generatePoints(6);
+  const points = generatePoints(numberOfPoints);
   
   const initialActivePoint = points[points.length-1]
   const activePointCoords = { cx: initialActivePoint.cx, cy: initialActivePoint.cy }
 
-  const [activePoint, setActivePoint] = useState(initialActivePoint);
-
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleClick = useCallback((point: any) => {
+  const handleRotate = useCallback((point: any) => {
     const toDegrees = (radians: number) => radians * (180 / Math.PI);
 
     const currentAngle = Math.atan2(
@@ -48,8 +55,13 @@ export const CircleWithPoints = () => {
     const rotationAngle = toDegrees(targetAngle - currentAngle);
 
     setRotation(rotationAngle);
-    setActivePoint(point);
-  }, []);
+    onChangeActivePoint(point.index)
+  }, [activePointCoords, onChangeActivePoint]);
+
+  useEffect(() => {
+    const newActivePoint = points.find(point => point.index === activePoint.idx)
+    handleRotate(newActivePoint)
+  }, [activePoint, initialActivePoint, handleRotate])
 
   return (
     
@@ -62,10 +74,8 @@ export const CircleWithPoints = () => {
       <g
         width="530"
         height="530"
+        transform={`rotate(${rotation}, 265, 265)`} 
         style={{
-          transform: `rotate(${rotation}deg)`,
-          transformOrigin: 'center',
-          transformBox: 'fill-box',
           transition: 'transform 0.5s ease',
         }}
       >
@@ -73,12 +83,12 @@ export const CircleWithPoints = () => {
         {points.map((point) => (
           <g key={point.index}>
             <circle
-              className={cn(styles.border, { [styles.active]: point.index === activePoint.index })}
+              className={cn(styles.border, { [styles.active]: point.index === activePoint.idx })}
               cx={point.cx}
               cy={point.cy}
               r="12"
               fill="transparent"
-              onClick={() => handleClick(point)}
+              onClick={() => handleRotate(point)}
             />
             <circle 
               className={styles.point}

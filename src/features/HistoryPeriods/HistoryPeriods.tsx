@@ -1,6 +1,7 @@
 import { PeriodsGallery } from 'features/HistoryPeriods/elems/PeriodsGallery/PeriodsGallery';
 
 import { EventsSlider } from './elems/EventsSlider/EventsSlider';
+import styles from './HistoryPeriods.module.scss';
 
 import type { TimePeriod } from 'shared/types/Periods';
 
@@ -103,9 +104,9 @@ export const HistoryPeriods = () => {
   ];
 
   return (
-    <>
+    <section className={styles.container}>
       <PeriodsGallery periods={periodsData}  />
       <EventsSlider historicalEvents={eventsData[0].periodEvents} />
-    </>
+    </section>
   );
 };
