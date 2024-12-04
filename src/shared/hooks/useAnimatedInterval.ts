@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import type { TimeInterval } from 'shared/types/Periods';
 
-export const useAnimatedInterval = (interval: TimeInterval, duration = 300) => {
+export const useAnimatedInterval = (interval: TimeInterval, duration = 700) => {
   const [displayInterval, setDisplayInterval] = useState(interval);
 
   useEffect(() => {

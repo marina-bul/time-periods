@@ -12,7 +12,12 @@ interface CircleProps {
   onChangeActivePoint: (pointIndex: number) => void
 }
 
-export const CircleWithPoints: FC<CircleProps> = ({ numberOfPoints, activePoint, onChangeActivePoint }) => {
+export const CircleWithPoints: FC<CircleProps> = ({ 
+  className, 
+  numberOfPoints, 
+  activePoint, 
+  onChangeActivePoint 
+}) => {
   const [rotation, setRotation] = useState(0);
   const generatePoints = (numPoints: number) => {
     const radius = 265;
@@ -64,9 +69,8 @@ export const CircleWithPoints: FC<CircleProps> = ({ numberOfPoints, activePoint,
   }, [activePoint, initialActivePoint, handleRotate])
 
   return (
-    
     <svg
-      className={styles.circleContainer}
+      className={cn(styles.circleContainer, className)}
       width="580"
       height="580"
       viewBox="0 0 570 580"

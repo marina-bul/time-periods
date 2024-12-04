@@ -22,6 +22,17 @@ export const GallerySlider: FC<SliderProps> = ({ slides }) => {
       <Swiper
         modules={[Navigation, Pagination, Scrollbar]}
         spaceBetween={80}
+        breakpoints={{
+          480: {
+            spaceBetween: 20,
+          },
+          768: {
+            spaceBetween: 30,
+          },
+          1024: {
+            spaceBetween: 40,
+          },
+        }}
         slidesPerView="auto"
         grabCursor={true}
         navigation={{

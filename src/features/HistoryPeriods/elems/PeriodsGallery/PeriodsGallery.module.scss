@@ -1,5 +1,32 @@
 .circle {
   position: absolute;
-  top: 215px;
-  left: calc(50% - 265px)
+  top: calc(50% - 265px);
+  left: calc(50% - 265px);
 }
+
+.intervals {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 40px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-gray);
+  }
+}
+
+@media (max-width: 1025px) {
+  .intervals {
+    height: 100vh;
+  }
+}
+

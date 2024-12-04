@@ -28,12 +28,16 @@ export const PeriodsGallery: FC<PeriodsGalleryProps> = ({ periods }) => {
   }, [periods])
   
   return (
-    <div className={styles.container}>
-      <div className={styles.circle}>
-        <CircleWithPoints numberOfPoints={periods.length} activePoint={activePoint} onChangeActivePoint={handleChangeActivePeriod} />
-      </div>
+    <div className={styles.intervals}>
+      <CircleWithPoints 
+        className={styles.circle}
+        numberOfPoints={periods.length} 
+        activePoint={activePoint} 
+        onChangeActivePoint={handleChangeActivePeriod} 
+      />
       <Numbers interval={activePeriod.timePeriod} />
       <Controls periodsAmount={periods.length} initialActiveIndex={activePeriod.periodId} onChangePeriod={handleChangeActivePeriod} />
+      
     </div>
   );
 };

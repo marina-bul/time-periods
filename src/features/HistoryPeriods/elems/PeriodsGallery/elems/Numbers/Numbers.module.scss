@@ -1,5 +1,5 @@
 .container {
-  margin: 96px 40px 137px 0;
+  margin-right: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,4 +18,11 @@
   font-weight: 700;
   letter-spacing: -4px;
 }
+
+@media (max-width: 1025px) {
+  .container {
+    font-size: 160px;
+  }
+}
+
 
