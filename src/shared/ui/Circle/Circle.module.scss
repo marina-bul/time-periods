@@ -23,7 +23,6 @@
   display: inline;
 }
 
-
 .border {
  cursor: pointer; 
 
@@ -31,7 +30,7 @@
  &.active+.point {
   stroke: rgba(66, 86, 122, 0.2);
   stroke-width: 0.2;
-  fill: var(--color-white);
+  fill: none;
   transform: scale(6);
 
   &+.pointText {
