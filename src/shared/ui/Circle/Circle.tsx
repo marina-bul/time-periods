@@ -10,7 +10,7 @@ import type { Point } from 'shared/types/Circle';
 interface CircleProps {
   className?: string;
   numberOfPoints: number;
-  activePoint: {idx: number; field: string}
+  activePoint: {idx: number; name: string}
   onChangeActivePoint: (pointIndex: number) => void
 }
 
@@ -89,7 +89,7 @@ export const CircleWithPoints: FC<CircleProps> = ({
               dominantBaseline="middle"
               transform={`rotate(${-rotation}, ${point.coords.cx}, ${point.coords.cy})`} 
             >
-              {activePoint.field}
+              {activePoint.name}
             </text>
           </g>
                 

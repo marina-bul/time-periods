@@ -7,21 +7,38 @@
   font: var(--font-xxl)
 }
 
-.startNumber {
-  color: var(--color-blue);
+.startNumber,
+.endNumber {
   font-weight: 700;
   letter-spacing: -4px;
 }
 
+.startNumber {
+  color: var(--color-blue);
+}
+
 .endNumber {
   color: var(--color-rose);
-  font-weight: 700;
-  letter-spacing: -4px;
 }
 
 @media (max-width: 1025px) {
   .container {
     font-size: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    margin: 0;
+    gap: 20px;
+    font: var(--font-xl);
+  }
+
+  .startNumber,
+  .endNumber {
+    font-weight: 700;
+    letter-spacing: -2px;
   }
 }
 

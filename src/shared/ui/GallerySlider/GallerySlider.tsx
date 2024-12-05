@@ -20,20 +20,22 @@ export const GallerySlider: FC<SliderProps> = ({ slides }) => {
   return (
     <>
       <Swiper
+        className={styles.slider}
         modules={[Navigation, Pagination, Scrollbar]}
         spaceBetween={80}
+        slidesPerView='auto'
         breakpoints={{
-          480: {
-            spaceBetween: 20,
+          260: {
+            slidesPerView: 1.5,
+            spaceBetween: 10,
           },
           768: {
-            spaceBetween: 30,
+            spaceBetween: 20,
           },
           1024: {
-            spaceBetween: 40,
+            spaceBetween: 30,
           },
         }}
-        slidesPerView="auto"
         grabCursor={true}
         navigation={{
           nextEl: '.custom-next-btn',

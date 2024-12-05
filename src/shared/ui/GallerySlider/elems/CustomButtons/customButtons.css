@@ -37,3 +37,10 @@
   right: -10px;
   top: 40%;
 }
+
+@media (max-width: 768px) {
+  .custom-prev-btn,
+  .custom-next-btn {
+    display: none;
+  }
+}

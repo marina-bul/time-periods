@@ -5,13 +5,13 @@ $right-ratio: 1;
   --content-width: 1440px;
 }
 
-@media (max-width: 1367px) {
+@media (max-width: 1366px) {
   :root {
     --content-width: 1240px;
   }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1024px) {
   :root {
     --content-width: 980px;
   }
@@ -41,15 +41,31 @@ $right-ratio: 1;
   border-image-source: linear-gradient(180deg, #3877EE -5%, #EF5DA8 85%);
 }
 
-@media (max-width: 1367px) {
+@media (max-width: 1366px) {
   .title {
     top: 10%;
   }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1024px) {
   .title {
     font-size: 48px;
     line-height: 57px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    margin: 0;
+    width: 100%;
+    border: none;
+  }
+
+  .title {
+    position: inherit;
+    padding: 60px 0 56px 20px;
+    font: var(--font-m);
+    font-weight: 700;
+    border: none
   }
 }

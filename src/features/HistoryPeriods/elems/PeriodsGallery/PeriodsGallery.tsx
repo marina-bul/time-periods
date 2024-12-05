@@ -1,7 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
+import { CircleWithPoints } from 'shared/ui/Circle/Circle';
+import { useBreakpoints } from 'shared/hooks/useMedia';
 
 import { Numbers } from './elems/Numbers/Numbers';
-import { CircleWithPoints } from './elems/Circle/Circle';
 import { Controls } from './elems/Controls/Controls';
 import styles from './PeriodsGallery.module.scss';
 
@@ -17,9 +18,10 @@ interface PeriodsGalleryProps extends HTMLAttributes<HTMLDivElement> {
 
 export const PeriodsGallery: FC<PeriodsGalleryProps> = ({ periods }) => {
   const [activePeriod, setActivePeriod] = useState(periods[periods.length-1])
+  const { isDesktop } = useBreakpoints()
 
   const activePoint = useMemo(() => {
-    return { idx: activePeriod.periodId, field: activePeriod.field }
+    return { idx: activePeriod.periodId, name: activePeriod.field }
   }, [activePeriod])
 
   const handleChangeActivePeriod = useCallback((periodIndex: number) => {
@@ -29,14 +31,21 @@ export const PeriodsGallery: FC<PeriodsGalleryProps> = ({ periods }) => {
   
   return (
     <div className={styles.intervals}>
-      <CircleWithPoints 
-        className={styles.circle}
-        numberOfPoints={periods.length} 
-        activePoint={activePoint} 
-        onChangeActivePoint={handleChangeActivePeriod} 
-      />
+      { isDesktop && (
+        <CircleWithPoints 
+          className={styles.circle}
+          numberOfPoints={periods.length} 
+          activePoint={activePoint} 
+          onChangeActivePoint={handleChangeActivePeriod} 
+        />
+      ) }
+
       <Numbers interval={activePeriod.timePeriod} />
-      <Controls periodsAmount={periods.length} initialActiveIndex={activePeriod.periodId} onChangePeriod={handleChangeActivePeriod} />
+      <Controls 
+        periodsAmount={periods.length} 
+        initialActiveIndex={activePeriod.periodId} 
+        onChangePeriod={handleChangeActivePeriod} 
+      />
       
     </div>
   );

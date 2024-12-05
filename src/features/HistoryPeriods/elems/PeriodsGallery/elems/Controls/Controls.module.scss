@@ -34,3 +34,22 @@
     cursor: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    left: 0;
+  }
+
+  .label {
+    margin-bottom: 5px;
+  }
+
+  .buttons {
+    gap: 10px
+  }
+
+  .btn {
+    width: 25px;
+    height: 25px;
+  }
+}

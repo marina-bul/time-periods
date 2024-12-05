@@ -2,3 +2,10 @@
   max-width: 320px;
   font: var(--font-m);
 }
+
+@media (max-width: 768px) {
+  .slide {
+    max-width: 166px;
+    font: var(--font-xs);
+  }
+}
